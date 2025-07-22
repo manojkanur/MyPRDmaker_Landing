@@ -46,7 +46,7 @@ export function SupportedPlatforms() {
     { src: "/images/vscode.png", alt: "VSCode Logo" },
   ]
 
-  const allLogos = [...logos, ...logos, ...logos, ...logos]
+  const duplicatedLogos = [...logos, ...logos] // Only duplicate once now
 
   return (
     <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black">
@@ -64,78 +64,40 @@ export function SupportedPlatforms() {
           Supported Platforms
         </motion.h2>
 
-        {/* Glassy outer container */}
+        {/* Logo container box */}
         <motion.div
           className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg overflow-hidden py-8"
           variants={itemVariants}
         >
-          {/* Row 1 */}
+          {/* Row 1 - scrolls left */}
           <div className="flex items-center justify-start w-[200%] animate-scroll-left mb-4">
-            {allLogos.map((logo, index) => (
+            {duplicatedLogos.map((logo, index) => (
               <div
                 key={`row1-${index}`}
-                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                className="flex-shrink-0 mx-4 bg-white rounded-xl shadow-md w-40 h-24 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <Image
                   src={logo.src || "/placeholder.svg"}
                   alt={logo.alt}
-                  width={140}
-                  height={60}
-                  className="object-contain mx-auto"
+                  fill
+                  className="object-contain p-4"
                 />
               </div>
             ))}
           </div>
 
-          {/* Row 2 */}
-          <div className="flex items-center justify-start w-[200%] animate-scroll-right mb-4">
-            {allLogos.map((logo, index) => (
+          {/* Row 2 - scrolls right */}
+          <div className="flex items-center justify-start w-[200%] animate-scroll-right">
+            {duplicatedLogos.map((logo, index) => (
               <div
                 key={`row2-${index}`}
-                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                className="flex-shrink-0 mx-4 bg-white rounded-xl shadow-md w-40 h-24 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <Image
                   src={logo.src || "/placeholder.svg"}
                   alt={logo.alt}
-                  width={140}
-                  height={60}
-                  className="object-contain mx-auto"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Row 3 */}
-          <div className="flex items-center justify-start w-[200%] animate-scroll-left mb-4">
-            {allLogos.map((logo, index) => (
-              <div
-                key={`row3-${index}`}
-                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
-              >
-                <Image
-                  src={logo.src || "/placeholder.svg"}
-                  alt={logo.alt}
-                  width={140}
-                  height={60}
-                  className="object-contain mx-auto"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Row 4 */}
-          <div className="flex items-center justify-start w-[200%] animate-scroll-right">
-            {allLogos.map((logo, index) => (
-              <div
-                key={`row4-${index}`}
-                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
-              >
-                <Image
-                  src={logo.src || "/placeholder.svg"}
-                  alt={logo.alt}
-                  width={140}
-                  height={60}
-                  className="object-contain mx-auto"
+                  fill
+                  className="object-contain p-4"
                 />
               </div>
             ))}
