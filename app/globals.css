@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 210 2.9% 13.7%; /* Soft black */
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 2.9% 13.7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 2.9% 13.7%;
+
+    --primary: 210 2.9% 13.7%; /* Soft black */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 0 0% 96.1%; /* Light gray */
+    --secondary-foreground: 210 2.9% 13.7%;
+
+    --muted: 215 14.3% 56.9%; /* Medium gray */
+    --muted-foreground: 210 2.9% 13.7%;
+
+    --accent: 210 2.9% 13.7%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 2.9% 13.7%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 210 2.9% 13.7%; /* Soft black */
+    --foreground: 0 0% 100%; /* White */
+
+    --card: 210 2.9% 13.7%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 210 2.9% 13.7%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%; /* White */
+    --primary-foreground: 210 2.9% 13.7%; /* Soft black */
+
+    --secondary: 210 2.9% 13.7%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 14.3% 56.9%;
+    --muted-foreground: 0 0% 100%;
+
+    --accent: 210 2.9% 13.7%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 210 2.9% 13.7%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Keyframes for continuous scrolling */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 80s linear infinite; /* Adjusted duration */
+}
+
+.animate-scroll-right {
+  animation: scroll-right 80s linear infinite; /* Adjusted duration */
+}
