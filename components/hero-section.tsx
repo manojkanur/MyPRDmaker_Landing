@@ -33,7 +33,7 @@ export function HeroSection() {
       aria-label="Hero section with prompt generator intro"
       className="relative flex items-center justify-center min-h-screen text-center px-4 py-16 md:py-24 bg-white text-soft-black overflow-hidden"
     >
-      {/* Subtle radial gradient overlay for depth */}
+      {/* Background depth gradient */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/10 to-transparent opacity-50 animate-pulse-slow" />
       </div>
@@ -67,19 +67,12 @@ export function HeroSection() {
           Save 90% of your time and credits with AI-crafted, production-ready prompts tailored for developers, designers, and makers.
         </motion.p>
 
-        <motion.div className="flex flex-col sm:flex-row justify-center gap-4" variants={itemVariants}>
+        <motion.div className="flex justify-center" variants={itemVariants}>
           <Button
             asChild
-            className="w-full sm:w-auto px-10 py-7 text-xl rounded-xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="px-12 py-8 text-2xl font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
           >
             <Link href="#generate-prompt">Generate Prompt</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="w-full sm:w-auto px-10 py-7 text-xl rounded-xl border-soft-black text-soft-black hover:bg-light-gray transition-all duration-300 bg-transparent shadow-lg hover:shadow-xl"
-          >
-            <Link href="#see-example">See Example</Link>
           </Button>
         </motion.div>
       </motion.div>
