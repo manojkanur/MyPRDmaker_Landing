@@ -46,7 +46,6 @@ export function SupportedPlatforms() {
     { src: "/images/vscode.png", alt: "VSCode Logo" },
   ]
 
-  // Duplicate logos multiple times for seamless continuous scrolling
   const allLogos = [...logos, ...logos, ...logos, ...logos]
 
   return (
@@ -58,78 +57,85 @@ export function SupportedPlatforms() {
         variants={containerVariants}
         className="container text-center"
       >
-        <motion.h2 className="text-3xl md:text-4xl font-sora font-bold mb-12 text-soft-black" variants={itemVariants}>
+        <motion.h2
+          className="text-3xl md:text-4xl font-sora font-bold mb-12 text-soft-black"
+          variants={itemVariants}
+        >
           Supported Platforms
         </motion.h2>
 
-        {/* Single curved rectangle box for all logo rows */}
+        {/* Glassy outer container */}
         <motion.div
           className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg overflow-hidden py-8"
           variants={itemVariants}
         >
-          {/* Row 1: scrolls left */}
+          {/* Row 1 */}
           <div className="flex items-center justify-start w-[200%] animate-scroll-left mb-4">
             {allLogos.map((logo, index) => (
               <div
                 key={`row1-${index}`}
-                className="flex-shrink-0 mx-4 p-2 bg-white/80 backdrop-blur-sm rounded-xl shadow-md w-40 h-20 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02] relative"
+                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <Image
                   src={logo.src || "/placeholder.svg"}
                   alt={logo.alt}
-                  fill // Make logo fill the box
-                  className="object-contain" // Ensure entire logo is visible
+                  width={140}
+                  height={60}
+                  className="object-contain mx-auto"
                 />
               </div>
             ))}
           </div>
 
-          {/* Row 2: scrolls right */}
+          {/* Row 2 */}
           <div className="flex items-center justify-start w-[200%] animate-scroll-right mb-4">
             {allLogos.map((logo, index) => (
               <div
                 key={`row2-${index}`}
-                className="flex-shrink-0 mx-4 p-2 bg-white/80 backdrop-blur-sm rounded-xl shadow-md w-40 h-20 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02] relative"
+                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <Image
                   src={logo.src || "/placeholder.svg"}
                   alt={logo.alt}
-                  fill // Make logo fill the box
-                  className="object-contain" // Ensure entire logo is visible
+                  width={140}
+                  height={60}
+                  className="object-contain mx-auto"
                 />
               </div>
             ))}
           </div>
 
-          {/* Row 3: scrolls left */}
+          {/* Row 3 */}
           <div className="flex items-center justify-start w-[200%] animate-scroll-left mb-4">
             {allLogos.map((logo, index) => (
               <div
                 key={`row3-${index}`}
-                className="flex-shrink-0 mx-4 p-2 bg-white/80 backdrop-blur-sm rounded-xl shadow-md w-40 h-20 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02] relative"
+                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <Image
                   src={logo.src || "/placeholder.svg"}
                   alt={logo.alt}
-                  fill // Make logo fill the box
-                  className="object-contain" // Ensure entire logo is visible
+                  width={140}
+                  height={60}
+                  className="object-contain mx-auto"
                 />
               </div>
             ))}
           </div>
 
-          {/* Row 4: scrolls right */}
+          {/* Row 4 */}
           <div className="flex items-center justify-start w-[200%] animate-scroll-right">
             {allLogos.map((logo, index) => (
               <div
                 key={`row4-${index}`}
-                className="flex-shrink-0 mx-4 p-2 bg-white/80 backdrop-blur-sm rounded-xl shadow-md w-40 h-20 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02] relative"
+                className="flex-shrink-0 mx-4 p-4 bg-white rounded-xl shadow-md w-40 h-24 flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <Image
                   src={logo.src || "/placeholder.svg"}
                   alt={logo.alt}
-                  fill // Make logo fill the box
-                  className="object-contain" // Ensure entire logo is visible
+                  width={140}
+                  height={60}
+                  className="object-contain mx-auto"
                 />
               </div>
             ))}
