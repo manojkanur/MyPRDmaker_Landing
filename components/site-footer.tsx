@@ -14,9 +14,7 @@ export function SiteFooter() {
           <Link href="/contact" className="text-medium-gray hover:text-soft-black transition-colors">
             Contact
           </Link>
-          <Link href="#social" className="text-medium-gray hover:text-soft-black transition-colors">
-            Social
-          </Link>
+
         </div>
         <div className="text-medium-gray font-mono text-xs md:text-sm">{"© 2025 MakePRD. All rights reserved."}</div>
       </div>
