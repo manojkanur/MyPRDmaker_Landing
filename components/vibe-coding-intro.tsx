@@ -70,11 +70,11 @@ export function VibeCodingIntro() {
         variants={itemVariants}
       >
         <Image
-          src="/placeholder.svg?height=400&width=600"
-          alt="Abstract generative art"
+          src="/images/prd1.png"
+          alt="MakePRD Dashboard Interface"
           width={600}
           height={400}
-          className="object-cover w-full h-full grayscale"
+          className="object-cover w-full h-full"
         />
       </motion.div>
     </motion.div>

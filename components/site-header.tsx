@@ -6,10 +6,12 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useRouter } from "next/navigation"
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,10 +26,14 @@ export function SiteHeader() {
   }, [])
 
   const navItems = [
-    { href: "/pricing", label: "Pricing" },
+    { href: "https://preview--make-prd-magic-ui.lovable.app/pricing", label: "Pricing" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
   ]
+
+  const handleLoginClick = () => {
+    router.push("https://preview--make-prd-magic-ui.lovable.app/login")
+  }
 
   return (
     <header
@@ -57,8 +63,8 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Button size="sm" asChild className="bg-soft-black text-white hover:bg-pure-black">
-            <Link href="/login">Login</Link>
+          <Button size="sm" onClick={handleLoginClick} className="bg-soft-black text-white hover:bg-pure-black">
+            Login
           </Button>
         </nav>
         {/* Mobile Navigation */}
@@ -81,8 +87,8 @@ export function SiteHeader() {
                   {item.label}
                 </Link>
               ))}
-              <Button asChild onClick={() => setIsOpen(false)} className="bg-soft-black text-white hover:bg-pure-black">
-                <Link href="/login">Login</Link>
+              <Button onClick={handleLoginClick} className="bg-soft-black text-white hover:bg-pure-black">
+                Login
               </Button>
             </nav>
           </SheetContent>

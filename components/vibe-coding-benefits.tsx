@@ -42,11 +42,11 @@ export function VibeCodingBenefits() {
         variants={itemVariants}
       >
         <Image
-          src="/placeholder.svg?height=400&width=600"
-          alt="Creative coding workflow"
+          src="/images/prd2.png"
+          alt="MakePRD Platform Selection Interface"
           width={600}
           height={400}
-          className="object-cover w-full h-full grayscale"
+          className="object-cover w-full h-full"
         />
       </motion.div>
       <div className="space-y-6 order-1 md:order-2">

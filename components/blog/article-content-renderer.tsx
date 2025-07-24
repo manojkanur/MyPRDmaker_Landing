@@ -30,14 +30,14 @@ export function ArticleContentRenderer({ content }: ArticleContentRendererProps)
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
   }
 
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
   return (
     <div className="prose prose-neutral max-w-none text-soft-black">
       {content.map((block, index) => {
-        const [ref, inView] = useInView({
-          triggerOnce: true,
-          threshold: 0.1,
-        })
-
         switch (block.type) {
           case "paragraph":
             return (

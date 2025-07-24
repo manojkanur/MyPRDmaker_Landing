@@ -13,7 +13,7 @@ const sora = Sora({ subsets: ["latin"], variable: "--font-sora" })
 export const metadata: Metadata = {
   title: "MakePRD - AI-powered PRD Generator",
   description: "Instantly generate professional Product Requirement Documents using intelligent prompts.",
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({

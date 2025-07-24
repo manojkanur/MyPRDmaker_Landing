@@ -7,7 +7,10 @@ import { FinalCTA } from "@/components/final-cta"
 import { VibeCodingIntro } from "@/components/vibe-coding-intro"
 import { VibeCodingBenefits } from "@/components/vibe-coding-benefits"
 import { MakePRDVibeCoding } from "@/components/make-prd-vibe-coding"
-import { WhyChooseMakePRD } from "@/components/why-choose-makeprd" // New import
+import { WhyChooseMakePRD } from "@/components/why-choose-makeprd"
+import { GeneratePromptPRDSection } from "@/components/generate-prompt-prd-section"
+import { GenerateGeneralPRDSection } from "@/components/generate-general-prd-section"
+import { StorePreviousPRDSection } from "@/components/store-previous-prd-section"
 
 export default function HomePage() {
   return (
@@ -29,6 +32,11 @@ export default function HomePage() {
           <VibeCodingBenefits />
         </div>
       </section>
+      {/* New sections added after VibeCodingBenefits */}
+      <GeneratePromptPRDSection />
+      <GenerateGeneralPRDSection />
+      <StorePreviousPRDSection />
+      {/* End of new sections */}
       <section className="py-16 md:py-24 bg-transparent text-soft-black">
         <div className="container">
           <HowItWorks />
@@ -39,13 +47,11 @@ export default function HomePage() {
           <MakePRDVibeCoding />
         </div>
       </section>
-      {/* Replaced sections */}
       <section className="py-16 md:py-24 bg-light-gray text-soft-black">
         <div className="container">
-          <WhyChooseMakePRD /> {/* New section */}
+          <WhyChooseMakePRD />
         </div>
       </section>
-      {/* End of replaced sections */}
       <section className="py-16 md:py-24 bg-light-gray text-soft-black">
         <div className="container">
           <FAQSection />

@@ -76,24 +76,15 @@ const config: Config = {
           to: { height: "0" },
         },
         "pulse-slow": {
+          // Added for hero background animation
           "0%, 100%": { opacity: "0.5" },
           "50%": { opacity: "0.7" },
-        },
-        "scroll-left": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        "scroll-right": {
-          "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-slow": "pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "scroll-left": "scroll-left 40s linear infinite",
-        "scroll-right": "scroll-right 40s linear infinite",
+        "pulse-slow": "pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite", // Added
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
