@@ -140,20 +140,14 @@ export default function ContactPage() {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-soft-black" />
                 <a href="mailto:support@makeprd.com" className="hover:text-soft-black transition-colors">
-                  support@makeprd.com
+                  help.prd@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-soft-black" />
-                <a href="tel:+1234567890" className="hover:text-soft-black transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+91 84284 26800" className="hover:text-soft-black transition-colors">
+                  +91 84284 26800
                 </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <LifeBuoy className="w-5 h-5 text-soft-black" />
-                <Link href="/faq" className="hover:text-soft-black transition-colors">
-                  Visit our Help Center
-                </Link>
               </div>
             </div>
           </motion.div>
