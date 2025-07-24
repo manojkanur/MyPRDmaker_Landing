@@ -42,26 +42,25 @@ export function VibeCodingIntro() {
           className="text-3xl md:text-4xl font-sora font-bold leading-tight text-soft-black"
           variants={itemVariants}
         >
-          What is Vibe Coding?
+          Why Prompt is Important in Vibe Coding
         </motion.h2>
         <motion.p className="text-lg md:text-xl text-medium-gray" variants={itemVariants}>
-          Vibe coding is an emerging approach to creative development where the focus is on capturing an aesthetic,
-          emotional, or conceptual "vibe" in code, rather than strictly adhering to functional requirements. It's about
-          expressing an artistic vision through programming, often resulting in generative art, interactive
-          installations, or unique digital experiences.
+          Prompts are the heart of vibe coding. They serve as creative instructions that guide AI models to generate
+          code, visuals, or interactions that capture a desired mood, aesthetic, or feeling. A well-crafted prompt can
+          translate abstract vibes into tangible digital expressions.
         </motion.p>
         <motion.ul className="space-y-4 text-soft-black" variants={itemVariants}>
           <li className="flex items-start gap-3">
             <Sparkles className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Focus on aesthetic and emotional expression.</span>
+            <span>Enables the expression of abstract emotions and concepts through AI-generated outputs.</span>
           </li>
           <li className="flex items-start gap-3">
             <Code className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Exploration of generative art and interactive experiences.</span>
+            <span>Prompts shape generative code that aligns with the intended aesthetic or theme.</span>
           </li>
           <li className="flex items-start gap-3">
             <Palette className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Bridging the gap between art and technology.</span>
+            <span>Bridges intuition and execution—turning creative intent into functional art.</span>
           </li>
         </motion.ul>
       </div>
@@ -71,7 +70,7 @@ export function VibeCodingIntro() {
       >
         <Image
           src="/images/prd1.png"
-          alt="MakePRD Dashboard Interface"
+          alt="Prompt-driven Vibe Coding Example"
           width={600}
           height={400}
           className="object-cover w-full h-full"
