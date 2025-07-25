@@ -73,7 +73,7 @@ export function HeroSection() {
               className="px-10 py-4 text-2xl font-bold rounded-full bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
             <a
-              href="https://preview--make-prd-magic-ui.lovable.app/login"
+              href="https://mt.makeprd.ai/login"
               target="_blank"
               rel="noopener noreferrer"
             >
