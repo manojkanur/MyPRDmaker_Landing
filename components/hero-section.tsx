@@ -48,7 +48,7 @@ export function HeroSection() {
           className="block text-base md:text-lg font-semibold text-gray-500 uppercase tracking-wide mb-4"
           variants={itemVariants}
         >
-          Powered By SocialEgale.AI
+          MakePRD AI Generator
         </motion.span>
 
         <motion.h1
@@ -73,7 +73,7 @@ export function HeroSection() {
               className="px-10 py-4 text-2xl font-bold rounded-full bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
             <a
-              href="https://mt.makeprd.ai/login"
+              href="https://preview--make-prd-magic-ui.lovable.app/login"
               target="_blank"
               rel="noopener noreferrer"
             >

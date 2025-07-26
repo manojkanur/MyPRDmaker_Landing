@@ -64,15 +64,15 @@ export function VibeCodingBenefits() {
         <motion.ul className="space-y-4 text-soft-black" variants={itemVariants}>
           <li className="flex items-start gap-3">
             <Clock className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Time-Saving: Focus on creative execution, not prompt crafting.</span>
+            <span>**Time-Saving:** Focus on creative execution, not prompt crafting.</span>
           </li>
           <li className="flex items-start gap-3">
             <Brain className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Boosts Creativity: Frees up mental space for artistic exploration.</span>
+            <span>**Boosts Creativity:** Frees up mental space for artistic exploration.</span>
           </li>
           <li className="flex items-start gap-3">
             <Lightbulb className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Reduces Friction: Get started faster with clear, inspiring prompts.</span>
+            <span>**Reduces Friction:** Get started faster with clear, inspiring prompts.</span>
           </li>
         </motion.ul>
         <motion.p className="text-lg md:text-xl text-medium-gray" variants={itemVariants}>
