@@ -48,7 +48,7 @@ export function HeroSection() {
           className="block text-base md:text-lg font-semibold text-gray-500 uppercase tracking-wide mb-4"
           variants={itemVariants}
         >
-          MakePRD AI Generator
+          Powered By SOCIAL EAGLE.AI
         </motion.span>
 
         <motion.h1
