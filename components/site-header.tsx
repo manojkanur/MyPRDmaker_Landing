@@ -26,13 +26,13 @@ export function SiteHeader() {
   }, [])
 
   const navItems = [
-    { href: "https://preview--make-prd-magic-ui.lovable.app/pricing", label: "Pricing" },
+    { href: "https://mt.makeprd.ai/pricing", label: "Pricing" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
   ]
 
   const handleLoginClick = () => {
-    router.push("https://preview--make-prd-magic-ui.lovable.app/login")
+    router.push("https://mt.makeprd.ai/login")
   }
 
   return (
