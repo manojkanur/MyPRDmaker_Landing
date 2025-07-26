@@ -366,3 +366,62 @@ Interaction: keyboard input for movement.`,
     ],
   },
 ]
+
+export function getArticleMetadata(post: BlogPost) {
+  return {
+    title: post.title,
+    description: post.description,
+    keywords: post.tags.join(", "),
+    authors: [{ name: post.author }],
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+  }
+}
+
+export function getArticleJsonLd(post: BlogPost, baseUrl = "https://makeprd.com") {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    author: {
+      "@type": "Person",
+      name: post.author,
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    publisher: {
+      "@type": "Organization",
+      name: "MakePRD",
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/placeholder-logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/blog/${post.slug}`,
+    },
+    url: `${baseUrl}/blog/${post.slug}`,
+    keywords: post.tags.join(", "),
+    articleSection: post.tags[0] || "Blog",
+    wordCount: post.content.reduce((count, item) => {
+      if (item.type === "paragraph") {
+        return count + item.text.split(" ").length
+      }
+      return count
+    }, 0),
+    timeRequired: `PT${post.readTimeMinutes}M`,
+  }
+}
