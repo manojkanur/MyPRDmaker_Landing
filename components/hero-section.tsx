@@ -72,7 +72,7 @@ export function HeroSection() {
             asChild
             className="px-12 py-8 text-2xl font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
           >
-            <Link href="#generate-prompt">Generate Prompt</Link>
+            <Link href="https://mt.makeprd.ai/login">Generate Prompt</Link>
           </Button>
         </motion.div>
       </motion.div>
