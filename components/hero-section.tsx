@@ -69,16 +69,10 @@ export function HeroSection() {
 
         <motion.div className="flex justify-center" variants={itemVariants}>
           <Button
-              asChild
-              className="px-10 py-4 text-2xl font-bold rounded-full bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
-            >
-            <a
-              href="https://preview--make-prd-magic-ui.lovable.app/login"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-            Generate Prompt
-            </a>
+            asChild
+            className="px-12 py-8 text-2xl font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
+          >
+            <Link href="#generate-prompt">Generate Prompt</Link>
           </Button>
         </motion.div>
       </motion.div>

@@ -62,7 +62,6 @@
     "react-intersection-observer": "latest",
     "react-native": "latest",
     "react-resizable-panels": "latest",
-    "react-syntax-highlighter": "latest",
     "recharts": "latest",
     "sonner": "latest",
     "tailwind-merge": "^2.5.5",

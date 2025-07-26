@@ -1,150 +1,167 @@
 "use client"
 
-import Image from "next/image"
+import React from "react"
+
+import type { ReactElement } from "react"
 import { motion } from "framer-motion"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { useInView } from "react-intersection-observer"
 import type { ArticleContentType } from "@/lib/blog-data"
-import type { JSX } from "react"
+import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 interface ArticleContentRendererProps {
   content: ArticleContentType[]
 }
 
-export function ArticleContentRenderer({ content }: ArticleContentRendererProps) {
-  const renderContent = (item: ArticleContentType, index: number) => {
-    const itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1 } },
-    }
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+}
 
-    switch (item.type) {
-      case "paragraph":
-        return (
-          <motion.p
-            key={index}
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-lg leading-relaxed text-medium-gray mb-6"
-          >
-            {item.text}
-          </motion.p>
-        )
+const paragraphVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+}
 
-      case "heading":
-        const HeadingTag = `h${item.level}` as keyof JSX.IntrinsicElements
-        return (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            className={`font-sora font-bold text-pure-black mb-6 mt-8 ${
-              item.level === 2 ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"
-            }`}
-          >
-            <HeadingTag>{item.text}</HeadingTag>
-          </motion.div>
-        )
-
-      case "list":
-        return (
-          <motion.ul
-            key={index}
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-3 mb-6 ml-6"
-          >
-            {item.items.map((listItem, listIndex) => (
-              <li key={listIndex} className="text-lg text-medium-gray relative">
-                <span className="absolute -left-6 top-2 w-2 h-2 bg-soft-black rounded-full"></span>
-                <span dangerouslySetInnerHTML={{ __html: listItem }} />
-              </li>
-            ))}
-          </motion.ul>
-        )
-
-      case "code":
-        return (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            className="mb-8 rounded-xl overflow-hidden shadow-lg"
-          >
-            <SyntaxHighlighter
-              language={item.language}
-              style={oneDark}
-              customStyle={{
-                margin: 0,
-                padding: "1.5rem",
-                fontSize: "0.9rem",
-                lineHeight: "1.5",
-              }}
-            >
-              {item.code}
-            </SyntaxHighlighter>
-          </motion.div>
-        )
-
-      case "image":
-        return (
-          <motion.figure key={index} variants={itemVariants} initial="hidden" animate="visible" className="mb-8">
-            <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden shadow-lg">
-              <Image src={item.src || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
-            </div>
-            {item.caption && (
-              <figcaption className="text-center text-sm text-medium-gray mt-3 italic">{item.caption}</figcaption>
-            )}
-          </motion.figure>
-        )
-
-      case "table":
-        return (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            className="mb-8 overflow-x-auto"
-          >
-            <table className="w-full border-collapse bg-white rounded-xl shadow-lg overflow-hidden">
-              <thead>
-                <tr className="bg-light-gray">
-                  {item.headers.map((header, headerIndex) => (
-                    <th
-                      key={headerIndex}
-                      className="px-6 py-4 text-left font-sora font-semibold text-pure-black border-b border-medium-gray/20"
-                    >
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {item.rows.map((row, rowIndex) => (
-                  <tr key={rowIndex} className="hover:bg-light-gray/50 transition-colors">
-                    {row.map((cell, cellIndex) => (
-                      <td key={cellIndex} className="px-6 py-4 text-medium-gray border-b border-medium-gray/10">
-                        {cell}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
-        )
-
-      default:
-        return null
-    }
+export function ArticleContentRenderer({ content }: ArticleContentRendererProps): ReactElement {
+  const HeadingTags = ["h1", "h2", "h3", "h4", "h5", "h6"] as const
+  const headingVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
   }
 
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
   return (
-    <article className="prose prose-lg max-w-none">{content.map((item, index) => renderContent(item, index))}</article>
+    <div className="prose prose-neutral max-w-none text-soft-black">
+      {content.map((block, index) => {
+        switch (block.type) {
+          case "paragraph":
+            return (
+              <motion.p
+                key={index}
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={paragraphVariants}
+                className="mb-6 text-lg leading-relaxed text-soft-black"
+              >
+                {block.text}
+              </motion.p>
+            )
+          case "heading":
+            const HeadingTag = HeadingTags[block.level - 1]
+            return (
+              <motion.div
+                key={index}
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={headingVariants}
+              >
+                {React.createElement(
+                  HeadingTag,
+                  {
+                    className: cn(
+                      "font-sora font-bold mt-10 mb-4",
+                      block.level === 2
+                        ? "text-3xl md:text-4xl text-pure-black"
+                        : "text-2xl md:text-3xl text-soft-black",
+                    ),
+                  },
+                  block.text,
+                )}
+              </motion.div>
+            )
+          case "list":
+            return (
+              <motion.ul
+                key={index}
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={sectionVariants}
+                className="list-disc list-inside space-y-2 mb-6 text-lg text-soft-black"
+              >
+                {block.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </motion.ul>
+            )
+          case "code":
+            return (
+              <motion.pre
+                key={index}
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={sectionVariants}
+                className="bg-soft-black text-white p-4 rounded-md overflow-x-auto text-sm font-mono mb-6"
+              >
+                <code className={`language-${block.language}`}>{block.code}</code>
+              </motion.pre>
+            )
+          case "image":
+            return (
+              <motion.figure
+                key={index}
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={sectionVariants}
+                className="my-8 text-center"
+              >
+                <Image
+                  src={block.src || "/placeholder.svg"}
+                  alt={block.alt}
+                  width={800}
+                  height={500}
+                  className="max-w-full h-auto rounded-lg shadow-md mx-auto grayscale"
+                />
+                {block.caption && <figcaption className="mt-2 text-sm text-medium-gray">{block.caption}</figcaption>}
+              </motion.figure>
+            )
+          case "table":
+            return (
+              <motion.div
+                key={index}
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={sectionVariants}
+                className="overflow-x-auto my-8"
+              >
+                <table className="w-full border-collapse text-soft-black">
+                  <thead>
+                    <tr className="bg-light-gray">
+                      {block.headers.map((header, i) => (
+                        <th key={i} className="p-3 border border-medium-gray/30 text-left font-bold">
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {block.rows.map((row, rowIndex) => (
+                      <tr key={rowIndex} className="even:bg-light-gray/50">
+                        {row.map((cell, cellIndex) => (
+                          <td key={cellIndex} className="p-3 border border-medium-gray/30">
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </motion.div>
+            )
+          default:
+            return null
+        }
+      })}
+    </div>
   )
 }

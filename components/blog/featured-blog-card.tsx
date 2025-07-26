@@ -1,12 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { motion } from "framer-motion"
-import { Clock, ArrowRight } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { useInView } from "react-intersection-observer"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
 
 interface FeaturedBlogCardProps {
   title: string
@@ -27,46 +25,45 @@ export function FeaturedBlogCard({
   imageSrc,
   imageAlt,
 }: FeaturedBlogCardProps) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  }
+
   return (
-    <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-      <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 border-light-gray/20">
-        <div className="grid md:grid-cols-2 gap-0">
-          <div className="relative h-64 md:h-full">
-            <Image src={imageSrc || "/placeholder.svg"} alt={imageAlt} fill className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-pure-black/20 to-transparent" />
+    <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={variants}>
+      <Link href={href} className="block h-full">
+        <Card className="h-full flex flex-col md:flex-row bg-white border-light-gray shadow-lg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.005]">
+          <div className="relative w-full md:w-1/2 h-64 md:h-auto">
+            <Image
+              src={imageSrc || "/placeholder.svg"}
+              alt={imageAlt}
+              fill
+              className="object-cover grayscale"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
-
-          <CardContent className="p-8 flex flex-col justify-center">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <Badge className="bg-pure-black text-white">Featured</Badge>
-                <Badge variant="secondary" className="bg-soft-gray text-pure-black">
-                  {tag}
-                </Badge>
+          <div className="w-full md:w-1/2 flex flex-col justify-between p-6">
+            <CardHeader className="pb-4 px-0 pt-0">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium px-3 py-1 rounded-full bg-light-gray text-medium-gray">{tag}</span>
+                <span className="text-sm text-medium-gray">{readTimeMinutes} min read</span>
               </div>
-
-              <div className="space-y-3">
-                <h2 className="text-2xl md:text-3xl font-sora font-bold text-pure-black leading-tight">{title}</h2>
-                <p className="text-medium-gray leading-relaxed">{description}</p>
-              </div>
-
-              <div className="flex items-center justify-between pt-4">
-                <div className="flex items-center text-medium-gray text-sm">
-                  <Clock className="w-4 h-4 mr-1" />
-                  {readTimeMinutes} min read
-                </div>
-
-                <Link href={href}>
-                  <Button className="bg-pure-black hover:bg-soft-black text-white group">
-                    Read Article
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </CardContent>
-        </div>
-      </Card>
+              <CardTitle className="text-2xl md:text-3xl font-sora font-bold text-pure-black leading-tight">
+                {title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex-grow px-0 pb-0">
+              <CardDescription className="text-base text-medium-gray line-clamp-4">{description}</CardDescription>
+            </CardContent>
+          </div>
+        </Card>
+      </Link>
     </motion.div>
   )
 }

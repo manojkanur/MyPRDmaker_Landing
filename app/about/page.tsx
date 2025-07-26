@@ -62,7 +62,7 @@ export default function AboutUsPage() {
             variants={itemVariants}
           >
             <Image
-              src="/images/prd1.png"
+              src="/placeholder.svg?height=400&width=600"
               alt="Our Mission"
               width={600}
               height={400}
@@ -77,7 +77,7 @@ export default function AboutUsPage() {
             variants={itemVariants}
           >
             <Image
-              src="/images/prd2.png"
+              src="/placeholder.svg?height=400&width=600"
               alt="Our Vision"
               width={600}
               height={400}

@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Clock } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useInView } from "react-intersection-observer"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
 interface BlogCardProps {
   title: string
@@ -12,32 +12,38 @@ interface BlogCardProps {
   tag: string
   readTimeMinutes: number
   href: string
+  className?: string
 }
 
-export function BlogCard({ title, description, tag, readTimeMinutes, href }: BlogCardProps) {
-  return (
-    <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.2 }}>
-      <Link href={href}>
-        <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-light-gray/20">
-          <CardContent className="p-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <Badge variant="secondary" className="bg-soft-gray text-pure-black">
-                  {tag}
-                </Badge>
-                <div className="flex items-center text-medium-gray text-sm">
-                  <Clock className="w-4 h-4 mr-1" />
-                  {readTimeMinutes} min
-                </div>
-              </div>
+export function BlogCard({ title, description, tag, readTimeMinutes, href, className }: BlogCardProps) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
 
-              <div className="space-y-2">
-                <h3 className="text-xl font-sora font-semibold text-pure-black line-clamp-2 hover:text-soft-black transition-colors">
-                  {title}
-                </h3>
-                <p className="text-medium-gray line-clamp-3 leading-relaxed">{description}</p>
-              </div>
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  }
+
+  return (
+    <motion.div ref={ref} initial="hidden" animate={inView ? "visible" : "hidden"} variants={variants}>
+      <Link href={href} className="block h-full">
+        <Card
+          className={cn(
+            "h-full flex flex-col justify-between bg-white border-light-gray shadow-sm rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md hover:scale-[1.01]",
+            className,
+          )}
+        >
+          <CardHeader className="pb-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-medium px-2 py-1 rounded-full bg-light-gray text-medium-gray">{tag}</span>
+              <span className="text-xs text-medium-gray">{readTimeMinutes} min read</span>
             </div>
+            <CardTitle className="text-xl font-sora font-bold text-soft-black leading-tight">{title}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-grow">
+            <CardDescription className="text-sm text-medium-gray line-clamp-3">{description}</CardDescription>
           </CardContent>
         </Card>
       </Link>
