@@ -5,10 +5,30 @@ import { Inter, Sora } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { ThreeBackground } from "@/components/three-background"
+import dynamic from "next/dynamic"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora" })
+// Lazy load the heavy 3D background component
+const ThreeBackground = dynamic(
+  () => import("@/components/three-background").then((mod) => ({ default: mod.ThreeBackground })),
+  {
+    ssr: false,
+    loading: () => null,
+  },
+)
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  preload: true,
+})
+
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: "MakePRD - AI-powered PRD Generator",
@@ -23,18 +43,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://mt.makeprd.ai" />
+      </head>
       <body className={`${inter.variable} ${sora.variable} font-inter antialiased bg-white text-soft-black`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light" // Default to light theme for black-on-white
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <ThreeBackground />
           <SiteHeader />
           <div className="relative z-10">
-            {" "}
-            {/* Content wrapper to be above 3D background */}
             {children}
             <SiteFooter />
           </div>

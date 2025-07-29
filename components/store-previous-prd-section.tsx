@@ -88,6 +88,9 @@ export function StorePreviousPRDSection() {
                 width={600}
                 height={400}
                 className="w-full h-auto"
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={false}
               />
             </div>
           </motion.div>

@@ -75,29 +75,72 @@
   }
 }
 
-/* Keyframes for continuous scrolling */
+/* Performance optimized animations */
 @keyframes scroll-left {
   from {
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes scroll-right {
   from {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   to {
-    transform: translateX(0%);
+    transform: translate3d(0%, 0, 0);
   }
 }
 
 .animate-scroll-left {
-  animation: scroll-left 80s linear infinite; /* Adjusted duration */
+  animation: scroll-left 80s linear infinite;
+  will-change: transform;
 }
 
 .animate-scroll-right {
-  animation: scroll-right 80s linear infinite; /* Adjusted duration */
+  animation: scroll-right 80s linear infinite;
+  will-change: transform;
+}
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optimize font loading */
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  font-display: swap;
+}
+
+/* Reduce layout shift */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* GPU acceleration for smooth animations */
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: opacity;
+}
+
+/* Optimize rendering performance */
+.container {
+  contain: layout style;
+}
+
+/* Reduce paint complexity */
+.bg-gradient-to-br {
+  will-change: auto;
 }

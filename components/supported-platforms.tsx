@@ -1,109 +1,101 @@
 "use client"
 
-import Image from "next/image"
 import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
+import Image from "next/image"
+
+const platforms = [
+  { name: "Cursor", logo: "/images/cursor.png" },
+  { name: "v0", logo: "/images/v0.png" },
+  { name: "Replit", logo: "/images/replit.png" },
+  { name: "Bolt", logo: "/images/bolt.png" },
+  { name: "Lovable", logo: "/images/lovable.png" },
+  { name: "Cline", logo: "/images/cline.png" },
+  { name: "Devin", logo: "/images/devin.png" },
+  { name: "Windsurf", logo: "/images/windsuf.png" },
+  { name: "VS Code", logo: "/images/vscode.png" },
+  { name: "Trae", logo: "/images/trae.png" },
+  { name: "Junie", logo: "/images/junie.png" },
+  { name: "RooCode", logo: "/images/roocode.png" },
+  { name: "Same", logo: "/images/same.png" },
+  { name: "Codex", logo: "/images/codex.png" },
+  { name: "Dia", logo: "/images/dia-new.png" },
+]
 
 export function SupportedPlatforms() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut",
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { y: 0, opacity: 1 },
-  }
-
-  const logos = [
-    { src: "/images/replit.png", alt: "Replit Logo" },
-    { src: "/images/devin.png", alt: "Devin Logo" },
-    { src: "/images/dia-new.png", alt: "Dia Logo" },
-    { src: "/images/junie.png", alt: "Junie Logo" },
-    { src: "/images/cursor.png", alt: "Cursor Logo" },
-    { src: "/images/codex.png", alt: "Codex Logo" },
-    { src: "/images/lovable.png", alt: "Lovable Logo" },
-    { src: "/images/bolt.png", alt: "Bolt Logo" },
-    { src: "/images/roocode.png", alt: "Roocode Logo" },
-    { src: "/images/trae.png", alt: "TRAE Logo" },
-    { src: "/images/same.png", alt: "Same Logo" },
-    { src: "/images/cline.png", alt: "Cline Logo" },
-    { src: "/images/v0.png", alt: "v0 Logo" },
-    { src: "/images/windsuf.png", alt: "Windsurf Logo" },
-    { src: "/images/vscode.png", alt: "VSCode Logo" },
-  ]
-
-  const duplicatedLogos = [...logos, ...logos] // Only duplicate once now
-
   return (
-    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black">
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="container text-center"
-      >
-        <motion.h2
-          className="text-3xl md:text-4xl font-sora font-bold mb-12 text-soft-black"
-          variants={itemVariants}
-        >
-          Supported Platforms
-        </motion.h2>
-
-        {/* Logo container box */}
+    <section className="py-16 md:py-24 bg-white text-soft-black">
+      <div className="container mx-auto px-4">
         <motion.div
-          className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg overflow-hidden py-8"
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
         >
-          {/* Row 1 - scrolls left */}
-          <div className="flex items-center justify-start w-[200%] animate-scroll-left mb-4">
-            {duplicatedLogos.map((logo, index) => (
-              <div
-                key={`row1-${index}`}
-                className="flex-shrink-0 mx-4 bg-white rounded-xl shadow-md w-40 h-24 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
-              >
-                <Image
-                  src={logo.src || "/placeholder.svg"}
-                  alt={logo.alt}
-                  fill
-                  className="object-contain p-4"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2 - scrolls right */}
-          <div className="flex items-center justify-start w-[200%] animate-scroll-right">
-            {duplicatedLogos.map((logo, index) => (
-              <div
-                key={`row2-${index}`}
-                className="flex-shrink-0 mx-4 bg-white rounded-xl shadow-md w-40 h-24 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
-              >
-                <Image
-                  src={logo.src || "/placeholder.svg"}
-                  alt={logo.alt}
-                  fill
-                  className="object-contain p-4"
-                />
-              </div>
-            ))}
-          </div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Supported Platforms</h2>
+          <p className="text-lg text-medium-gray max-w-2xl mx-auto">
+            Generate optimized PRDs for 16+ AI development tools and platforms
+          </p>
         </motion.div>
-      </motion.div>
+
+        {/* First row - scrolling left */}
+        <div className="relative overflow-hidden mb-8">
+          <motion.div
+            className="flex space-x-8 animate-scroll-left"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {/* Duplicate platforms for seamless scrolling */}
+            {[...platforms, ...platforms].map((platform, index) => (
+              <div
+                key={`${platform.name}-${index}`}
+                className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 bg-light-gray rounded-lg flex items-center justify-center p-4 hover:bg-gray-100 transition-colors duration-200"
+              >
+                <Image
+                  src={platform.logo || "/placeholder.svg"}
+                  alt={`${platform.name} logo`}
+                  width={64}
+                  height={64}
+                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 48px, 64px"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Second row - scrolling right */}
+        <div className="relative overflow-hidden">
+          <motion.div
+            className="flex space-x-8 animate-scroll-right"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            {/* Duplicate platforms for seamless scrolling */}
+            {[...platforms.slice().reverse(), ...platforms.slice().reverse()].map((platform, index) => (
+              <div
+                key={`${platform.name}-reverse-${index}`}
+                className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 bg-light-gray rounded-lg flex items-center justify-center p-4 hover:bg-gray-100 transition-colors duration-200"
+              >
+                <Image
+                  src={platform.logo || "/placeholder.svg"}
+                  alt={`${platform.name} logo`}
+                  width={64}
+                  height={64}
+                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 48px, 64px"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
     </section>
   )
 }
