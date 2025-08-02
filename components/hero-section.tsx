@@ -58,46 +58,45 @@ export function HeroSection() {
     <section
       role="banner"
       aria-label="Hero section with prompt generator intro"
-      className="relative min-h-screen max-h-screen flex flex-col bg-white text-soft-black overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-between bg-white text-soft-black overflow-hidden"
     >
       {/* Background depth gradient */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/10 to-transparent opacity-50 animate-pulse-slow" />
       </div>
 
-      {/* Hero Content - Properly spaced and centered */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 py-8">
+      {/* Hero Content - Properly spaced to avoid header overlap */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-8">
         <motion.div
-          className="w-full max-w-5xl mx-auto"
+          className="w-full max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           <motion.span
-            className="block text-sm md:text-base font-semibold text-gray-500 uppercase tracking-wide mb-6"
+            className="block text-sm md:text-base font-semibold text-gray-500 uppercase tracking-wide mb-8"
             variants={itemVariants}
           >
             Powered By SOCIAL EAGLE.AI
           </motion.span>
 
           <motion.h1
-            className="text-3xl md:text-5xl lg:text-6xl font-sora font-bold leading-tight mb-4 tracking-tighter bg-gradient-to-br from-black via-neutral-700 to-gray-500 text-transparent bg-clip-text text-center"
+            className="text-3xl md:text-5xl lg:text-6xl font-sora font-bold leading-tight mb-6 tracking-tighter bg-gradient-to-br from-black via-neutral-700 to-gray-500 text-transparent bg-clip-text text-center"
             variants={itemVariants}
           >
-            Generate Full Prompts for Your Website —
-            <br className="hidden md:block" />
+            Generate Full Prompts for Your Website —<br />
             In Just One Click.
           </motion.h1>
 
           <motion.p
-            className="text-base md:text-lg text-medium-gray mb-6 max-w-4xl mx-auto text-center leading-relaxed"
+            className="text-base md:text-lg text-medium-gray mb-8 max-w-4xl mx-auto text-center leading-relaxed"
             variants={itemVariants}
           >
             Save 90% of your time and credits with AI-crafted, production-ready prompts tailored for developers,
             designers, and makers.
           </motion.p>
 
-          <motion.div className="flex justify-center mb-8" variants={itemVariants}>
+          <motion.div className="flex justify-center mb-12" variants={itemVariants}>
             <Button
               asChild
               className="px-8 py-4 text-lg font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
@@ -110,7 +109,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Supported Platforms Section - Compact and centered */}
+      {/* Supported Platforms Section - Compact and at bottom */}
       <motion.div
         ref={ref}
         initial="hidden"
