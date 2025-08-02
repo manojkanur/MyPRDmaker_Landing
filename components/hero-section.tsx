@@ -37,8 +37,8 @@ export function HeroSection() {
   const logos = [
     { src: "/images/replit.png", alt: "Replit Logo" },
     { src: "/images/devin.png", alt: "Devin Logo" },
-    { src: "/images/dia-new.png", alt: "Dia Logo" },
-    { src: "/images/junie.png", alt: "Junie Logo" },
+    { src: "/images/dia.png", alt: "Dia Logo" },
+    { src: "/images/Junie.png", alt: "Junie Logo" },
     { src: "/images/cursor.png", alt: "Cursor Logo" },
     { src: "/images/codex.png", alt: "Codex Logo" },
     { src: "/images/lovable.png", alt: "Lovable Logo" },
@@ -48,7 +48,7 @@ export function HeroSection() {
     { src: "/images/same.png", alt: "Same Logo" },
     { src: "/images/cline.png", alt: "Cline Logo" },
     { src: "/images/v0.png", alt: "v0 Logo" },
-    { src: "/images/windsuf.png", alt: "Windsurf Logo" },
+    { src: "/images/windsurf.png", alt: "Windsurf Logo" },
     { src: "/images/vscode.png", alt: "VSCode Logo" },
   ]
 
