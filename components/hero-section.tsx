@@ -66,7 +66,7 @@ export function HeroSection() {
       </div>
 
       {/* Hero Content - Properly spaced to avoid header overlap */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-8">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-4">
         <motion.div
           className="w-full max-w-6xl mx-auto"
           variants={containerVariants}
@@ -84,7 +84,8 @@ export function HeroSection() {
             className="text-3xl md:text-5xl lg:text-6xl font-sora font-bold leading-tight mb-6 tracking-tighter bg-gradient-to-br from-black via-neutral-700 to-gray-500 text-transparent bg-clip-text text-center"
             variants={itemVariants}
           >
-            Generate Full Prompts for Your Website<br />
+            Generate Full Prompts for Your Website
+            <br />
             In Just One Click.
           </motion.h1>
 
@@ -96,7 +97,7 @@ export function HeroSection() {
             designers, and makers.
           </motion.p>
 
-          <motion.div className="flex justify-center mb-12" variants={itemVariants}>
+          <motion.div className="flex justify-center mb-6" variants={itemVariants}>
             <Button
               asChild
               className="px-8 py-4 text-lg font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
