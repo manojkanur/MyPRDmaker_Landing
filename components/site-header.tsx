@@ -1,174 +1,99 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
-import { useInView } from "react-intersection-observer"
+import { useState, useEffect } from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { MenuIcon } from "lucide-react"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useRouter } from "next/navigation"
 
-export function HeroSection() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+export function SiteHeader() {
+  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
+      }
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  }
-
-  const logos = [
-    { src: "/images/replit.png", alt: "Replit Logo" },
-    { src: "/images/devin.png", alt: "Devin Logo" },
-    { src: "/images/dia-new.png", alt: "Dia Logo" },
-    { src: "/images/junie.png", alt: "Junie Logo" },
-    { src: "/images/cursor.png", alt: "Cursor Logo" },
-    { src: "/images/codex.png", alt: "Codex Logo" },
-    { src: "/images/lovable.png", alt: "Lovable Logo" },
-    { src: "/images/bolt.png", alt: "Bolt Logo" },
-    { src: "/images/roocode.png", alt: "Roocode Logo" },
-    { src: "/images/trae.png", alt: "TRAE Logo" },
-    { src: "/images/same.png", alt: "Same Logo" },
-    { src: "/images/cline.png", alt: "Cline Logo" },
-    { src: "/images/v0.png", alt: "v0 Logo" },
-    { src: "/images/windsuf.png", alt: "Windsurf Logo" },
-    { src: "/images/vscode.png", alt: "VSCode Logo" },
+  const navItems = [
+    { href: "https://mt.makeprd.ai/pricing", label: "Pricing" },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact" },
   ]
 
-  const duplicatedLogos = [...logos, ...logos]
+  const handleLoginClick = () => {
+    router.push("https://mt.makeprd.ai/login")
+  }
 
   return (
-    <section
-      role="banner"
-      aria-label="Hero section with prompt generator intro"
-      className="relative min-h-screen flex flex-col bg-white text-soft-black overflow-hidden"
+    <header
+      className={cn(
+        "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-4rem)] max-w-3xl",
+        "transition-all duration-300 ease-in-out",
+        scrolled
+          ? "bg-background/80 backdrop-blur-lg shadow-lg rounded-full py-2 px-6"
+          : "bg-transparent rounded-3xl py-4 px-8",
+      )}
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/10 to-transparent opacity-50 animate-pulse-slow" />
-      </div>
-
-      {/* Hero content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-6">
-        <motion.div
-          className="w-full max-w-5xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.span
-            className="block text-sm md:text-base font-semibold text-gray-500 uppercase tracking-wide mb-4"
-            variants={itemVariants}
-          >
-            Powered By SOCIAL EAGLE.AI
-          </motion.span>
-
-          <motion.h1
-            className="text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] font-sora font-bold leading-tight tracking-tighter bg-gradient-to-br from-black via-neutral-700 to-gray-500 text-transparent bg-clip-text text-center mb-4 max-w-4xl mx-auto"
-            variants={itemVariants}
-          >
-            Generate Full Prompts for Your Website —<br />
-            In Just One Click.
-          </motion.h1>
-
-          <motion.p
-            className="text-base md:text-lg text-medium-gray mb-6 max-w-3xl mx-auto text-center leading-relaxed"
-            variants={itemVariants}
-          >
-            Save 90% of your time and credits with AI-crafted, production-ready prompts tailored for developers,
-            designers, and makers.
-          </motion.p>
-
-          <motion.div className="flex justify-center mb-6" variants={itemVariants}>
-            <Button
-              asChild
-              className="px-8 py-4 text-lg font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-xl hover:shadow-2xl"
+      <div className="flex items-center justify-between h-14">
+        <Link href="/" className="flex items-center space-x-2">
+          <span className="font-bold text-xl text-soft-black">MakePRD.AI</span>
+        </Link>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-pure-black",
+                scrolled ? "text-soft-black" : "text-soft-black",
+              )}
             >
-              <Link href="https://mt.makeprd.ai/login" prefetch={false}>
-                Generate Prompt
-              </Link>
+              {item.label}
+            </Link>
+          ))}
+          <Button size="sm" onClick={handleLoginClick} className="bg-soft-black text-white hover:bg-pure-black">
+            Login
+          </Button>
+        </nav>
+        {/* Mobile Navigation */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon" className="text-soft-black">
+              <MenuIcon className="h-6 w-6" />
+              <span className="sr-only">Toggle navigation menu</span>
             </Button>
-          </motion.div>
-        </motion.div>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white text-soft-black">
+            <nav className="flex flex-col gap-4 pt-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-lg font-medium hover:text-pure-black"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Button onClick={handleLoginClick} className="bg-soft-black text-white hover:bg-pure-black">
+                Login
+              </Button>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
-
-      {/* Supported Platforms section */}
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="relative z-10 px-4 pb-8"
-      >
-        <div className="w-full max-w-7xl mx-auto">
-          <motion.h2
-            className="text-xl md:text-2xl font-sora font-bold mb-4 text-soft-black text-center"
-            variants={itemVariants}
-          >
-            Supported Platforms
-          </motion.h2>
-
-          <motion.div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden py-4"
-            variants={itemVariants}
-          >
-            {/* Row 1 */}
-            <div className="flex items-center justify-start w-[200%] animate-scroll-left mb-2">
-              {duplicatedLogos.map((logo, index) => (
-                <div
-                  key={`row1-${index}`}
-                  className="flex-shrink-0 mx-2 bg-white rounded-2xl shadow-md w-24 h-20 md:w-28 md:h-24 relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.03]"
-                >
-                  <Image
-                    src={logo.src || "/placeholder.svg"}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain p-1"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 96px, 112px"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Row 2 */}
-            <div className="flex items-center justify-start w-[200%] animate-scroll-right">
-              {duplicatedLogos.map((logo, index) => (
-                <div
-                  key={`row2-${index}`}
-                  className="flex-shrink-0 mx-2 bg-white rounded-2xl shadow-md w-24 h-20 md:w-28 md:h-24 relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.03]"
-                >
-                  <Image
-                    src={logo.src || "/placeholder.svg"}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain p-1"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 96px, 112px"
-                  />
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-    </section>
+    </header>
   )
 }

@@ -51,16 +51,16 @@ export function SupportedPlatforms() {
             {[...platforms, ...platforms].map((platform, index) => (
               <div
                 key={`${platform.name}-${index}`}
-                className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 bg-light-gray rounded-lg flex items-center justify-center p-4 hover:bg-gray-100 transition-colors duration-200"
+                className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 bg-light-gray rounded-lg flex items-center justify-center p-1 hover:bg-gray-100 hover:scale-110 transform transition-all duration-300 hover:shadow-lg overflow-hidden"
               >
                 <Image
                   src={platform.logo || "/placeholder.svg"}
                   alt={`${platform.name} logo`}
-                  width={64}
-                  height={64}
-                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  width={96}
+                  height={96}
+                  className="w-20 h-20 md:w-28 md:h-28 object-contain hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  sizes="(max-width: 768px) 48px, 64px"
+                  sizes="(max-width: 768px) 80px, 112px"
                 />
               </div>
             ))}
@@ -80,16 +80,16 @@ export function SupportedPlatforms() {
             {[...platforms.slice().reverse(), ...platforms.slice().reverse()].map((platform, index) => (
               <div
                 key={`${platform.name}-reverse-${index}`}
-                className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 bg-light-gray rounded-lg flex items-center justify-center p-4 hover:bg-gray-100 transition-colors duration-200"
+                className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 bg-light-gray rounded-lg flex items-center justify-center p-1 hover:bg-gray-100 hover:scale-110 transform transition-all duration-300 hover:shadow-lg overflow-hidden"
               >
                 <Image
                   src={platform.logo || "/placeholder.svg"}
                   alt={`${platform.name} logo`}
-                  width={64}
-                  height={64}
-                  className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                  width={96}
+                  height={96}
+                  className="w-20 h-20 md:w-28 md:h-28 object-contain hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  sizes="(max-width: 768px) 48px, 64px"
+                  sizes="(max-width: 768px) 80px, 112px"
                 />
               </div>
             ))}
