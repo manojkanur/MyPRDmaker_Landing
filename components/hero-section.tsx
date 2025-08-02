@@ -84,7 +84,7 @@ export function HeroSection() {
             className="text-3xl md:text-5xl lg:text-6xl font-sora font-bold leading-tight mb-6 tracking-tighter bg-gradient-to-br from-black via-neutral-700 to-gray-500 text-transparent bg-clip-text text-center"
             variants={itemVariants}
           >
-            Generate Full Prompts for Your Website —<br />
+            Generate Full Prompts for Your Website <br />
             In Just One Click.
           </motion.h1>
 
