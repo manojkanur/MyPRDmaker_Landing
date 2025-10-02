@@ -39,7 +39,7 @@ export function PricingPreview() {
         asChild
         className="px-8 py-6 text-lg rounded-lg bg-soft-black text-white hover:bg-pure-black transition-colors duration-200"
       >
-        <Link href="/pricing">View All Plans</Link>
+        <Link href="https://app.makeprd.ai/">View All Plans</Link>
       </Button>
     </div>
   )

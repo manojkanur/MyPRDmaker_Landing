@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { FileText, Users, CheckCircle } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function GenerateGeneralPRDSection() {
   return (
@@ -87,7 +88,9 @@ export function GenerateGeneralPRDSection() {
               </div>
             </div>
 
-            <Button className="bg-black text-white hover:bg-gray-800 px-8 py-3">Create General PRD</Button>
+            <Button asChild className="bg-black text-white hover:bg-gray-800 px-8 py-3">
+              <Link href="https://app.makeprd.ai/">Create General PRD</Link>
+            </Button>
           </motion.div>
         </div>
       </div>

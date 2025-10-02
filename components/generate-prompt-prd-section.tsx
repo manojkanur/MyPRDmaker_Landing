@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Zap, Target, Sparkles } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function GeneratePromptPRDSection() {
   return (
@@ -65,7 +66,9 @@ export function GeneratePromptPRDSection() {
               </div>
             </div>
 
-            <Button className="bg-black text-white hover:bg-gray-800 px-8 py-3">Generate Prompt PRD</Button>
+            <Button asChild className="bg-black text-white hover:bg-gray-800 px-8 py-3">
+              <Link href="https://app.makeprd.ai/">Generate Prompt PRD</Link>
+            </Button>
           </motion.div>
 
           {/* Image */}

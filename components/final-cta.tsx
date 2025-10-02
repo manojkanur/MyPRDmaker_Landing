@@ -45,7 +45,7 @@ export function FinalCTA() {
           asChild
           className="px-10 py-7 text-xl rounded-xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-lg hover:shadow-xl"
         >
-          <Link href="#generate-prompt">Start Generating Now</Link>
+          <Link href="https://app.makeprd.ai/">Start Generating Now</Link>
         </Button>
       </motion.div>
     </motion.div>
