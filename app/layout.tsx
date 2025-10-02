@@ -8,10 +8,13 @@ import { SiteFooter } from "@/components/site-footer"
 import dynamic from "next/dynamic"
 
 // Lazy load the heavy 3D background component
-const ThreeBackground = dynamic(() => import("@/components/three-background"), {
-  ssr: false,
-  loading: () => null,
-})
+const ThreeBackground = dynamic(
+  () => import("@/components/three-background").then((mod) => ({ default: mod.ThreeBackground })),
+  {
+    ssr: false,
+    loading: () => null,
+  },
+)
 
 const inter = Inter({
   subsets: ["latin"],

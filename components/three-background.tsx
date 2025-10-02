@@ -1,79 +1,52 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import * as THREE from "three"
+import { useRef, useMemo } from "react"
+import { Canvas, useFrame } from "@react-three/fiber"
+import { Grid, OrbitControls, PerspectiveCamera } from "@react-three/drei"
 
-export default function ThreeBackground() {
-  const mountRef = useRef<HTMLDivElement>(null)
+function Scene() {
+  const gridRef = useRef<any>()
 
-  useEffect(() => {
-    if (!mountRef.current) return
+  // Memoize grid props to prevent unnecessary re-renders
+  const gridProps = useMemo(
+    () => ({
+      renderOrder: -1,
+      position: [0, -1.5, 0] as [number, number, number],
+      infiniteGrid: true,
+      cellSize: 0.6,
+      sectionSize: 3,
+      sectionColor: "#999999",
+      sectionThickness: 0.8,
+      fadeDistance: 25,
+      followCamera: false,
+      cellColor: "#F5F5F5",
+      cellThickness: 0.4,
+      opacity: 0.7,
+      args: [10, 10] as [number, number],
+    }),
+    [],
+  )
 
-    // Scene setup
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+  useFrame((state, delta) => {
+    // Optional: subtle animation for the grid
+    // gridRef.current.rotation.y += delta * 0.01;
+  })
 
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    mountRef.current.appendChild(renderer.domElement)
+  return (
+    <>
+      <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={75} />
+      <Grid ref={gridRef} {...gridProps} />
+      <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+    </>
+  )
+}
 
-    // Create particles
-    const particlesGeometry = new THREE.BufferGeometry()
-    const particlesCount = 1000
-    const posArray = new Float32Array(particlesCount * 3)
-
-    for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 10
-    }
-
-    particlesGeometry.setAttribute("position", new THREE.BufferAttribute(posArray, 3))
-
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      color: 0x818cf8,
-      transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
-    })
-
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
-    scene.add(particlesMesh)
-
-    camera.position.z = 3
-
-    // Animation
-    let animationFrameId: number
-    const animate = () => {
-      animationFrameId = requestAnimationFrame(animate)
-
-      particlesMesh.rotation.y += 0.0005
-      particlesMesh.rotation.x += 0.0002
-
-      renderer.render(scene, camera)
-    }
-
-    animate()
-
-    // Handle resize
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-    }
-
-    window.addEventListener("resize", handleResize)
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("resize", handleResize)
-      cancelAnimationFrame(animationFrameId)
-      mountRef.current?.removeChild(renderer.domElement)
-      renderer.dispose()
-      particlesGeometry.dispose()
-      particlesMaterial.dispose()
-    }
-  }, [])
-
-  return <div ref={mountRef} className="fixed inset-0 -z-10 pointer-events-none" />
+export function ThreeBackground() {
+  return (
+    <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
+      <Canvas dpr={Math.min(window.devicePixelRatio, 2)} performance={{ min: 0.5 }} frameloop="demand">
+        <Scene />
+      </Canvas>
+    </div>
+  )
 }
