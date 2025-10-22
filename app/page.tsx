@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/hero-section"
-
 // Lazy load below-the-fold components to reduce initial bundle size
 const VibeCodingIntro = dynamic(
   () => import("@/components/vibe-coding-intro").then((mod) => ({ default: mod.VibeCodingIntro })),
