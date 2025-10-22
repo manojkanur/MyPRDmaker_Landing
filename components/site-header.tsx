@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useRouter } from "next/navigation"
+
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
