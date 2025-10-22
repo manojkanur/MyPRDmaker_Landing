@@ -1,11 +1,24 @@
 "use client"
 
 import { useMemo, useRef } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Grid, PerspectiveCamera } from "@react-three/drei"
+
+// Dynamically import three.js dependencies only on client
+let Canvas: any
+let useFrame: any
+let Grid: any
+let PerspectiveCamera: any
+
+if (typeof window !== "undefined") {
+  const fiber = require("@react-three/fiber")
+  const drei = require("@react-three/drei")
+  Canvas = fiber.Canvas
+  useFrame = fiber.useFrame
+  Grid = drei.Grid
+  PerspectiveCamera = drei.PerspectiveCamera
+}
 
 function Scene() {
-  const gridRef = useRef<THREE.Object3D | null>(null)
+  const gridRef = useRef<any>(null)
 
   // Stable grid config (no re-renders)
   const gridProps = useMemo(
@@ -26,16 +39,18 @@ function Scene() {
     [],
   )
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useFrame((_state, _delta) => {
     // Optional subtle animation:
     // if (gridRef.current) gridRef.current.rotation.y += _delta * 0.01
   })
 
+  if (!Grid || !PerspectiveCamera) return null
+
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={75} />
-      <Grid ref={gridRef as any} {...gridProps} />
-      {/* OrbitControls not needed (all interactions disabled); remove to save bytes */}
+      <Grid ref={gridRef} {...gridProps} />
     </>
   )
 }
@@ -47,6 +62,11 @@ export function ThreeBackground() {
     const max = Math.min(window.devicePixelRatio || 1, 2)
     return [1, max]
   }, [])
+
+  // Don't render anything on server
+  if (typeof window === "undefined" || !Canvas) {
+    return null
+  }
 
   return (
     <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">

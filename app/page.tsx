@@ -8,6 +8,7 @@ const VibeCodingIntro = dynamic(
     loading: () => <div className="h-96 bg-transparent" />,
   },
 )
+
 const ProblemSolution = dynamic(
   () => import("@/components/problem-solution").then((mod) => ({ default: mod.ProblemSolution })),
   {

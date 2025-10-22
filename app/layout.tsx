@@ -2,11 +2,10 @@ import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter, Sora } from "next/font/google"
-
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import ThreeBackgroundClient from "@/components/three-background-client" // client wrapper
+import ThreeBackgroundClient from "@/components/three-background-client"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,19 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* App Router allows custom <head> in layout; these are fine */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://mt.makeprd.ai" />
       </head>
       <body className={`${inter.variable} ${sora.variable} font-inter antialiased bg-white text-soft-black`}>
-        {/* It's okay to render a client component from a server layout */}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {/* 3D background is heavy + client-only; render via client wrapper */}
           <ThreeBackgroundClient />
-
           <SiteHeader />
-
           <div className="relative z-10">
             {children}
             <SiteFooter />
