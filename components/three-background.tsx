@@ -1,26 +1,12 @@
 "use client"
 
 import { useMemo, useRef } from "react"
-
-// Dynamically import three.js dependencies only on client
-let Canvas: any
-let useFrame: any
-let Grid: any
-let PerspectiveCamera: any
-
-if (typeof window !== "undefined") {
-  const fiber = require("@react-three/fiber")
-  const drei = require("@react-three/drei")
-  Canvas = fiber.Canvas
-  useFrame = fiber.useFrame
-  Grid = drei.Grid
-  PerspectiveCamera = drei.PerspectiveCamera
-}
+import { Canvas, useFrame } from "@react-three/fiber"
+import { Grid, PerspectiveCamera } from "@react-three/drei"
 
 function Scene() {
   const gridRef = useRef<any>(null)
 
-  // Stable grid config (no re-renders)
   const gridProps = useMemo(
     () => ({
       renderOrder: -1 as number,
@@ -39,13 +25,9 @@ function Scene() {
     [],
   )
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useFrame((_state, _delta) => {
-    // Optional subtle animation:
-    // if (gridRef.current) gridRef.current.rotation.y += _delta * 0.01
+  useFrame(() => {
+    // Optional: add subtle animation if needed
   })
-
-  if (!Grid || !PerspectiveCamera) return null
 
   return (
     <>
@@ -55,18 +37,12 @@ function Scene() {
   )
 }
 
-export function ThreeBackground() {
-  // Guard against SSR/window and use preferred R3F DPR range
+export default function ThreeBackground() {
   const dpr = useMemo<[number, number]>(() => {
-    if (typeof window === "undefined") return [1, 1]
+    if (typeof window === "undefined") return [1, 2]
     const max = Math.min(window.devicePixelRatio || 1, 2)
     return [1, max]
   }, [])
-
-  // Don't render anything on server
-  if (typeof window === "undefined" || !Canvas) {
-    return null
-  }
 
   return (
     <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">

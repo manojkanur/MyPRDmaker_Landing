@@ -24,7 +24,7 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "MakePRD - AI-powered PRD Generator",
   description: "Instantly generate professional Product Requirement Documents using intelligent prompts.",
-  generator: "v0.dev",
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -37,7 +37,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://mt.makeprd.ai" />
       </head>
       <body className={`${inter.variable} ${sora.variable} font-inter antialiased bg-white text-soft-black`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>

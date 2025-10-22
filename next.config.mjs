@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  webpack: (config) => {
+    config.externals = [...(config.externals || []), { canvas: 'canvas' }]
+    return config
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -8,21 +14,7 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@react-three/fiber', '@react-three/drei'],
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  compress: true,
-  swcMinify: true,
-  poweredByHeader: false,
-  reactStrictMode: true,
 }
 
 export default nextConfig
