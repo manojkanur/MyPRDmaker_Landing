@@ -1,37 +1,47 @@
-import type React from "react"
-import "./globals.css"
-import type { Metadata } from "next"
-import { Inter, Sora } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
-import ThreeBackgroundClient from "@/components/three-background-client"
+import { useEffect } from "react";
+import type React from "react";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter, Sora } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import ThreeBackgroundClient from "@/components/three-background-client";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
   preload: true,
-})
+});
 
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
   display: "swap",
   preload: true,
-})
+});
 
 export const metadata: Metadata = {
   title: "MakePRD - AI-powered PRD Generator",
   description: "Instantly generate professional Product Requirement Documents using intelligent prompts.",
-    generator: 'v0.app'
-}
+  generator: "v0.app",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    if (window.reb2b) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://ddwl4m2hdecbv.cloudfront.net/b/XOE9GHVDJLOM/XOE9GHVDJLOM.js.gz";
+    document.getElementsByTagName("script")[0].parentNode?.insertBefore(script, document.getElementsByTagName("script")[0]);
+  }, []);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -49,5 +59,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
