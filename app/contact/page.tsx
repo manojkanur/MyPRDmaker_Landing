@@ -1,40 +1,9 @@
 "use client"
-
-import type React from "react"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin } from "lucide-react"
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
 export default function ContactPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({ ...prev, [id]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsLoading(true)
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    console.log("Form submitted:", formData)
-    alert("Your message has been sent!")
-    setFormData({ name: "", email: "", message: "" })
-    setIsLoading(false)
-  }
-
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -65,99 +34,41 @@ export default function ContactPage() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="container max-w-3xl mx-auto"
+        className="container max-w-2xl mx-auto"
       >
         <motion.h1 className="text-4xl md:text-5xl font-sora font-bold text-center mb-12" variants={itemVariants}>
           Get in Touch
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div className="bg-light-gray p-8 rounded-xl shadow-lg" variants={itemVariants}>
-            <h2 className="text-2xl font-sora font-bold mb-6">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <Label htmlFor="name" className="text-soft-black">
-                  Name
-                </Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-white border-medium-gray/30 text-soft-black focus:border-soft-black focus:ring-soft-black rounded-lg"
-                />
-              </div>
-              <div>
-                <Label htmlFor="email" className="text-soft-black">
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="your@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 bg-white border-medium-gray/30 text-soft-black focus:border-soft-black focus:ring-soft-black rounded-lg"
-                />
-              </div>
-              <div>
-                <Label htmlFor="message" className="text-soft-black">
-                  Message
-                </Label>
-                <Textarea
-                  id="message"
-                  placeholder="Your message..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={5}
-                  required
-                  className="mt-1 bg-white border-medium-gray/30 text-soft-black focus:border-soft-black focus:ring-soft-black rounded-lg"
-                />
-              </div>
-              <Button
-                type="submit"
-                className="w-full px-8 py-6 text-lg rounded-xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-md hover:shadow-lg"
-                disabled={isLoading}
-              >
-                {isLoading ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            className="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-light-gray"
-            variants={itemVariants}
-          >
-            <h2 className="text-2xl font-sora font-bold mb-6">Contact Information</h2>
-            <div className="space-y-6 text-medium-gray">
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-soft-black" />
-                <a href="mailto:support@makeprd.com" className="hover:text-soft-black transition-colors">
-                  help.prd@gmail.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-soft-black" />
-                <a href="tel:+91 84284 26800" className="hover:text-soft-black transition-colors">
-                  +91 84284 26800
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-soft-black mt-1" />
-                <div className="hover:text-soft-black transition-colors">
-                  Chennai, Tamil Nadu,
-                  <br />
-                  India
-                </div>
+        {/* Contact Info */}
+        <motion.div
+          className="bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-xl shadow-lg border border-light-gray"
+          variants={itemVariants}
+        >
+          <h2 className="text-2xl font-sora font-bold mb-8">Contact Information</h2>
+          <div className="space-y-6 text-medium-gray">
+            <div className="flex items-center gap-3">
+              <Mail className="w-5 h-5 text-soft-black" />
+              <a href="mailto:makeprd.ai@gmail.com" className="hover:text-soft-black transition-colors">
+                makeprd.ai@gmail.com
+              </a>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-soft-black" />
+              <a href="tel:+91 84284 26800" className="hover:text-soft-black transition-colors">
+                +91 84284 26800
+              </a>
+            </div>
+            <div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 text-soft-black mt-1" />
+              <div className="hover:text-soft-black transition-colors">
+                Chennai, Tamil Nadu,
+                <br />
+                India
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </motion.div>
     </main>
   )
