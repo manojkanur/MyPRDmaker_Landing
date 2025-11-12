@@ -66,7 +66,7 @@ export function HeroSection() {
       </div>
 
       {/* Hero Content - Properly spaced to avoid header overlap */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-32 md:pt-40 pb-4">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-26 md:pt-40 pb-4">
         <motion.div
           className="w-full max-w-6xl mx-auto"
           variants={containerVariants}
