@@ -62,11 +62,11 @@ export default function AboutUsPage() {
             variants={itemVariants}
           >
             <Image
-              src="/images/prd1.png"
+              src="/professional-business-team-collaborating-on-projec.jpg"
               alt="Our Mission"
               width={600}
               height={400}
-              className="object-cover w-full h-full grayscale"
+              className="object-cover w-full h-full"
             />
           </motion.div>
         </div>
@@ -77,11 +77,11 @@ export default function AboutUsPage() {
             variants={itemVariants}
           >
             <Image
-              src="/images/prd2.png"
+              src="/modern-professional-office-workspace-with-technolo.jpg"
               alt="Our Vision"
               width={600}
               height={400}
-              className="object-cover w-full h-full grayscale"
+              className="object-cover w-full h-full"
             />
           </motion.div>
           <div className="space-y-6 order-1 md:order-2">

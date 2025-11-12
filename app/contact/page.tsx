@@ -1,14 +1,12 @@
 "use client"
 
-import Link from "next/link"
-
 import type React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, LifeBuoy } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
@@ -148,6 +146,14 @@ export default function ContactPage() {
                 <a href="tel:+91 84284 26800" className="hover:text-soft-black transition-colors">
                   +91 84284 26800
                 </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-soft-black mt-1" />
+                <div className="hover:text-soft-black transition-colors">
+                  Chennai, Tamil Nadu,
+                  <br />
+                  India
+                </div>
               </div>
             </div>
           </motion.div>

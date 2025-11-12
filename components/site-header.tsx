@@ -26,7 +26,8 @@ export function SiteHeader() {
   }, [])
 
   const navItems = [
-    { href: "https://app.makeprd.ai/", label: "Pricing" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/docs", label: "Docs" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
   ]
