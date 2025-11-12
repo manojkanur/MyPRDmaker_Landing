@@ -52,13 +52,76 @@ export function ModesSection() {
   ]
 
   return (
-    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black">
+    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black overflow-hidden">
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <linearGradient id="modeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
+          <g>
+            <circle cx="100" cy="100" r="35" fill="none" stroke="url(#modeGradient)" strokeWidth="8" opacity="0.6">
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 100 100"
+                to="360 100 100"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            <rect x="95" y="55" width="10" height="20" fill="url(#modeGradient)" rx="2">
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 100 100"
+                to="360 100 100"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <rect x="95" y="125" width="10" height="20" fill="url(#modeGradient)" rx="2">
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 100 100"
+                to="360 100 100"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <rect x="55" y="95" width="20" height="10" fill="url(#modeGradient)" rx="2">
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 100 100"
+                to="360 100 100"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <rect x="125" y="95" width="20" height="10" fill="url(#modeGradient)" rx="2">
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 100 100"
+                to="360 100 100"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </rect>
+          </g>
+        </svg>
+      </div>
+
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="container"
+        className="container relative z-10"
       >
         <motion.h2
           className="text-3xl md:text-4xl font-sora font-bold mb-4 text-center text-soft-black"

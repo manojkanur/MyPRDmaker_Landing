@@ -52,13 +52,38 @@ export function UseCases() {
   ]
 
   return (
-    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black">
+    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black overflow-hidden">
+      <div className="absolute left-0 top-1/4 w-72 h-72 opacity-10 pointer-events-none hidden lg:block">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <linearGradient id="teamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
+          <g>
+            <circle cx="70" cy="80" r="18" fill="url(#teamGradient)" opacity="0.5">
+              <animate attributeName="cy" values="80;75;80" dur="3s" repeatCount="indefinite" />
+            </circle>
+            <path d="M70 98 Q70 120 55 130 L85 130 Q70 120 70 98" fill="url(#teamGradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.5;0.7;0.5" dur="3s" repeatCount="indefinite" />
+            </path>
+            <circle cx="130" cy="80" r="18" fill="url(#teamGradient)" opacity="0.5">
+              <animate attributeName="cy" values="80;75;80" dur="3s" begin="0.5s" repeatCount="indefinite" />
+            </circle>
+            <path d="M130 98 Q130 120 115 130 L145 130 Q130 120 130 98" fill="url(#teamGradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.5;0.7;0.5" dur="3s" begin="0.5s" repeatCount="indefinite" />
+            </path>
+          </g>
+        </svg>
+      </div>
+
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="container"
+        className="container relative z-10"
       >
         <motion.h2
           className="text-3xl md:text-4xl font-sora font-bold mb-12 text-center text-soft-black"

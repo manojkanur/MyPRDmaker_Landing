@@ -37,7 +37,7 @@ export function CoreBenefits() {
     {
       icon: Globe,
       title: "From idea to website",
-      description: "Get hero copy, features, pricing, and FAQs — ready to ship.",
+      description: "Get hero copy, features, pricing, and FAQs - ready to ship.",
     },
     {
       icon: FileCheck,
@@ -57,18 +57,49 @@ export function CoreBenefits() {
     {
       icon: Download,
       title: "Export anywhere",
-      description: "PDF, Markdown, or copy-paste — share your PRD your way.",
+      description: "PDF, Markdown, or copy-paste - share your PRD your way.",
     },
   ]
 
   return (
-    <section className="relative z-10 py-16 md:py-24 bg-light-gray text-soft-black">
+    <section className="relative z-10 py-16 md:py-24 bg-light-gray text-soft-black overflow-hidden">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-72 h-72 opacity-8 pointer-events-none hidden lg:block">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <linearGradient id="benefitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#ef4444" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
+          <g className="animate-pulse">
+            <path
+              d="M100 30 L110 70 L150 75 L120 100 L130 140 L100 120 L70 140 L80 100 L50 75 L90 70 Z"
+              fill="url(#benefitGradient)"
+              opacity="0.5"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 100 100"
+                to="360 100 100"
+                dur="20s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <circle cx="100" cy="100" r="45" fill="none" stroke="url(#benefitGradient)" strokeWidth="2" opacity="0.4">
+              <animate attributeName="r" values="40;50;40" dur="3s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3s" repeatCount="indefinite" />
+            </circle>
+          </g>
+        </svg>
+      </div>
+
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="container"
+        className="container relative z-10"
       >
         <motion.h2
           className="text-3xl md:text-4xl font-sora font-bold mb-12 text-center text-soft-black"

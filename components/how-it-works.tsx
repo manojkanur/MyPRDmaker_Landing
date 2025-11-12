@@ -98,18 +98,55 @@ export function HowItWorks() {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="text-center"
+      className="text-center relative"
     >
-      <motion.h2 className="text-3xl md:text-4xl font-sora font-bold mb-12 text-soft-black" variants={itemVariants}>
+      <div className="absolute left-0 top-1/4 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
+          <g>
+            <circle cx="50" cy="100" r="20" fill="url(#flowGradient)" opacity="0.6">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <path d="M70 100 L95 100" stroke="url(#flowGradient)" strokeWidth="3" opacity="0.7">
+              <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2s" repeatCount="indefinite" />
+            </path>
+            <circle cx="100" cy="100" r="20" fill="url(#flowGradient)" opacity="0.6">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite" />
+            </circle>
+            <path d="M120 100 L145 100" stroke="url(#flowGradient)" strokeWidth="3" opacity="0.7">
+              <animate
+                attributeName="stroke-dasharray"
+                values="0,100;100,0"
+                dur="2s"
+                begin="0.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <circle cx="150" cy="100" r="20" fill="url(#flowGradient)" opacity="0.6">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite" />
+            </circle>
+          </g>
+        </svg>
+      </div>
+
+      <motion.h2
+        className="text-3xl md:text-4xl font-sora font-bold mb-12 text-soft-black relative z-10"
+        variants={itemVariants}
+      >
         How It Works
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 relative z-10">
         {steps.map((step, index) => (
           <StepCard key={step.step} {...step} />
         ))}
       </div>
 
-      <motion.div variants={itemVariants}>
+      <motion.div variants={itemVariants} className="relative z-10">
         <Button
           asChild
           className="px-8 py-4 text-lg font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-lg hover:shadow-xl"

@@ -5,8 +5,12 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { useInView } from "react-intersection-observer"
+import { useState } from "react"
+import { VideoModal } from "@/components/video-modal"
 
 export function HeroSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -66,7 +70,7 @@ export function HeroSection() {
       </div>
 
       {/* Hero Content - Properly spaced to avoid header overlap */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-24 md:pt-40 pb-4">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-24 md:pt-28 pb-4">
         <motion.div
           className="w-full max-w-6xl mx-auto"
           variants={containerVariants}
@@ -93,7 +97,7 @@ export function HeroSection() {
             className="text-base md:text-lg text-medium-gray mb-8 max-w-4xl mx-auto text-center leading-relaxed"
             variants={itemVariants}
           >
-            MakePRD.ai turns a single idea into a product website, a clear PRD, and build-ready prompts — so you can
+            MakePRD.ai turns a single idea into a product website, a clear PRD, and build-ready prompts - so you can
             ship micro-SaaS fast and save 90% of time and credits.
           </motion.p>
 
@@ -107,13 +111,11 @@ export function HeroSection() {
               </Link>
             </Button>
             <Button
-              asChild
+              onClick={() => setIsVideoOpen(true)}
               variant="outline"
               className="px-8 py-4 text-lg font-semibold rounded-2xl border-2 border-soft-black text-soft-black hover:bg-light-gray transition-all duration-300 bg-transparent"
             >
-              <Link href="#demo" prefetch={false}>
-                Watch Demo
-              </Link>
+              Watch Demo
             </Button>
           </motion.div>
         </motion.div>
@@ -180,6 +182,13 @@ export function HeroSection() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Video Modal Component */}
+      <VideoModal
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoUrl="https://storage.files-vault.com/uploads/1762940951-erFUOyDG1g.mp4"
+      />
     </section>
   )
 }

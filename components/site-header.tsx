@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -46,7 +47,14 @@ export function SiteHeader() {
     >
       <div className="flex items-center justify-between h-14">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold text-xl text-soft-black">MakePRD.AI</span>
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-yvI1JOC25sRUSvzabayJIclBJWvF2E.png"
+            alt="MakePRD.ai Logo"
+            width={160}
+            height={40}
+            className="h-8 w-auto"
+            priority
+          />
         </Link>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">

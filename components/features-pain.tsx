@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer"
 import { Sparkles, FileText, Workflow, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 export function FeaturesPain() {
   const [ref, inView] = useInView({
@@ -30,14 +31,73 @@ export function FeaturesPain() {
     visible: { opacity: 1, y: 0 },
   }
 
+  const showcaseImages = [
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-aq1GjbrQlCs8oRidIUibXMO86FaqSr.png",
+      alt: "Hiring Signal Synthesizer Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-dM3gh5XrOGxJP7K6eu5YMZLWMhMwza.png",
+      alt: "Finance Close Copilot Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-k0UdaqC7iJ9FeZGZCQE0cCWUSgWG84.png",
+      alt: "Code Review + Risk Radar Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-2iQfHSodfwgf8yhytrE8SdKOeQtBIm.png",
+      alt: "DealDesk Copilot Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-NA4wSSw99qHnQdz6kv6TcDmwHzXBo2.png",
+      alt: "Smart RFP/RFI Responder Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1ijppO8vrAy68Sg4oCxyR78j4VdclG.png",
+      alt: "Compliance Policy Copilot Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-lZQVuF7R4KcCpEuVTMR6KkbSmKW23J.png",
+      alt: "Product Feedback Brain Dashboard",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-WnW2NKjpHYmcE6i3lnjathtVBX4xg2.png",
+      alt: "Smart RFP/RFI Responder Landing Page",
+    },
+    {
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-QtoeXYy4oANfYcI7eoBzcqwaHEZ2Fz.png",
+      alt: "Experiment Platform Dashboard",
+    },
+  ]
+
   return (
-    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black">
+    <section className="relative z-10 py-16 md:py-24 bg-white text-soft-black overflow-hidden">
+      <div className="absolute right-0 top-1/4 w-64 h-64 opacity-10 pointer-events-none hidden lg:block">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          <defs>
+            <linearGradient id="sparkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
+          <g className="animate-pulse">
+            <circle cx="100" cy="100" r="60" fill="url(#sparkGradient)" opacity="0.3" />
+            <path
+              d="M100 40 L110 85 L155 85 L120 115 L130 160 L100 135 L70 160 L80 115 L45 85 L90 85 Z"
+              fill="url(#sparkGradient)"
+              className="animate-spin-slow"
+              style={{ transformOrigin: "center", animation: "spin 8s linear infinite" }}
+            />
+          </g>
+        </svg>
+      </div>
+
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="container"
+        className="container relative z-10"
       >
         <motion.h2
           className="text-3xl md:text-4xl font-sora font-bold mb-4 text-center text-soft-black"
@@ -138,7 +198,7 @@ export function FeaturesPain() {
         </div>
 
         {/* Mini CTA */}
-        <motion.div variants={itemVariants} className="text-center">
+        <motion.div variants={itemVariants} className="text-center mb-20">
           <Button
             asChild
             className="px-8 py-4 text-lg font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-lg hover:shadow-xl group"
@@ -148,6 +208,35 @@ export function FeaturesPain() {
               <ArrowRight className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mt-20">
+          <h3 className="text-3xl md:text-4xl font-sora font-bold mb-12 text-center text-soft-black">
+            See The Magic With Our Prompt
+          </h3>
+
+          <div className="relative w-full overflow-hidden">
+            <div className="flex gap-6 animate-scroll-rtl">
+              {/* First set of images */}
+              {showcaseImages.map((image, index) => (
+                <div
+                  key={`first-${index}`}
+                  className="flex-shrink-0 w-[600px] h-[400px] relative rounded-xl overflow-hidden shadow-2xl"
+                >
+                  <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {showcaseImages.map((image, index) => (
+                <div
+                  key={`second-${index}`}
+                  className="flex-shrink-0 w-[600px] h-[400px] relative rounded-xl overflow-hidden shadow-2xl"
+                >
+                  <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     </section>

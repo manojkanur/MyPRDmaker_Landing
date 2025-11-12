@@ -60,7 +60,7 @@ export function VibeCodingIntro() {
           </li>
           <li className="flex items-start gap-3">
             <Palette className="w-6 h-6 flex-shrink-0 text-medium-gray" />
-            <span>Bridges intuition and execution—turning creative intent into functional art.</span>
+            <span>Bridges intuition and execution-turning creative intent into functional art.</span>
           </li>
         </motion.ul>
       </div>

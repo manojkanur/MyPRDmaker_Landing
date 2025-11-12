@@ -94,6 +94,44 @@
   }
 }
 
+/* Added infinite scroll animation for testimonials */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Added right-to-left scroll animation for showcase images */
+@keyframes scroll-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-rtl {
+  animation: scroll-rtl 40s linear infinite; /* Updated speed from 120s to 40s */
+  will-change: transform;
+}
+
+.animate-scroll-rtl:hover {
+  animation-play-state: paused;
+}
+
 .animate-scroll-left {
   animation: scroll-left 80s linear infinite;
   will-change: transform;
@@ -103,6 +141,23 @@
   animation: scroll-right 80s linear infinite;
   will-change: transform;
 }
+
+/* Added custom SVG animation keyframes */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+/* </CHANGE> */
 
 /* Critical CSS for above-the-fold content */
 .hero-section {

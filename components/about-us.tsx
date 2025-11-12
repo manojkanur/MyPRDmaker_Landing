@@ -62,7 +62,7 @@ export function AboutUs() {
           MakePRD.ai started with a question: Why does every new product begin with a blank page?
         </motion.p>
         <motion.p className="text-base text-medium-gray mb-12 max-w-2xl mx-auto" variants={itemVariants}>
-          We combine clear product thinking with AI to turn ideas into buildable plans and launch-ready websites — fast.
+          We combine clear product thinking with AI to turn ideas into buildable plans and launch-ready websites - fast.
         </motion.p>
 
         <motion.div variants={itemVariants} className="mb-8">

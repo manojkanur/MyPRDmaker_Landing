@@ -18,7 +18,6 @@ export function SocialProof() {
       transition: {
         duration: 0.7,
         ease: "easeOut",
-        staggerChildren: 0.15,
       },
     },
   }
@@ -31,20 +30,48 @@ export function SocialProof() {
   const testimonials = [
     {
       quote: "Went from idea to working prototype in a day.",
-      author: "Indie Hacker",
+      author: "Sarah K., Indie Hacker",
     },
     {
-      quote: "Best kickoff doc I've seen — and I didn't write it.",
-      author: "Product Manager",
+      quote: "Best kickoff doc I've seen - and I didn't write it.",
+      author: "Mike T., Product Manager",
     },
     {
       quote: "Made my product site and PRD in one sitting.",
-      author: "Solo Founder",
+      author: "Alex R., Solo Founder",
+    },
+    {
+      quote: "Saved me weeks of planning. The PRD was ready for my dev team instantly.",
+      author: "Jessica L., Startup Founder",
+    },
+    {
+      quote: "The Vibe Prompt feature is magic. I got real UI on the first try.",
+      author: "David M., Designer",
+    },
+    {
+      quote: "Finally, a tool that understands what I'm trying to build.",
+      author: "Chris P., Technical Lead",
+    },
+    {
+      quote: "Cut my ideation time by 90%. Now I can test ideas fast.",
+      author: "Emma W., Product Designer",
+    },
+    {
+      quote: "The platform templates saved me hours of rewriting prompts.",
+      author: "James B., Full-stack Developer",
+    },
+    {
+      quote: "Best investment for my agency. We ship client projects faster now.",
+      author: "Nina S., Agency Owner",
+    },
+    {
+      quote: "This is exactly what the micro-SaaS community needed.",
+      author: "Tom H., Indie Maker",
     },
   ]
 
   return (
-    <section className="relative z-10 py-16 md:py-24 bg-light-gray text-soft-black">
+    <section className="relative z-10 py-16 md:py-24 bg-light-gray text-soft-black overflow-hidden">
       <motion.div
         ref={ref}
         initial="hidden"
@@ -61,20 +88,28 @@ export function SocialProof() {
         <motion.p className="text-lg text-medium-gray mb-12 text-center" variants={itemVariants}>
           Real feedback from builders like you
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      </motion.div>
+
+      <div className="relative">
+        <div className="flex gap-6 animate-scroll">
+          {/* First set of testimonials */}
           {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="p-8 bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-            >
+            <div key={`first-${index}`} className="flex-shrink-0 w-[350px] p-8 bg-white rounded-xl shadow-lg">
               <Quote className="w-8 h-8 text-medium-gray mb-4" />
               <p className="text-lg text-soft-black mb-4 font-medium">"{testimonial.quote}"</p>
-              <p className="text-sm text-medium-gray">— {testimonial.author}</p>
-            </motion.div>
+              <p className="text-sm text-medium-gray">- {testimonial.author}</p>
+            </div>
+          ))}
+          {/* Duplicate set for seamless loop */}
+          {testimonials.map((testimonial, index) => (
+            <div key={`second-${index}`} className="flex-shrink-0 w-[350px] p-8 bg-white rounded-xl shadow-lg">
+              <Quote className="w-8 h-8 text-medium-gray mb-4" />
+              <p className="text-lg text-soft-black mb-4 font-medium">"{testimonial.quote}"</p>
+              <p className="text-sm text-medium-gray">- {testimonial.author}</p>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
