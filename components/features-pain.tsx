@@ -103,7 +103,7 @@ export function FeaturesPain() {
           className="text-3xl md:text-4xl font-sora font-bold mb-4 text-center text-soft-black"
           variants={itemVariants}
         >
-          Features That Remove the Pain
+          Features That Remove the Friction
         </motion.h2>
         <motion.p className="text-lg text-medium-gray mb-12 text-center max-w-3xl mx-auto" variants={itemVariants}>
           Fast, efficient, and built for builders who want to ship today
@@ -122,11 +122,11 @@ export function FeaturesPain() {
               Vibe Prompt <span className="text-sm font-normal text-medium-gray">(Flagship)</span>
             </h3>
             <p className="text-medium-gray mb-4 font-semibold">
-              Pain: "I have an idea but don't know what to prompt. I waste credits and still don't get real UI."
+              Have a rough idea but not sure what to prompt? It’s easy to burn credits and still miss real UI.
             </p>
             <p className="text-soft-black mb-4">
-              <span className="font-semibold">Fix:</span> Type one short line. We create a build-ready prompt that
-              renders real UI in V0, Lovable, Bolt, Cursor.
+              <span className="font-semibold">Solution:</span> Type one short line. We generate a build-ready prompt that
+              renders real UI in V0, Lovable, Bolt, and Cursor.
             </p>
             <div className="mb-4 space-y-2 text-sm">
               <p className="text-soft-black">You get:</p>
@@ -151,11 +151,11 @@ export function FeaturesPain() {
               PRD Mode <span className="text-sm font-normal text-medium-gray">(Clarity for Devs)</span>
             </h3>
             <p className="text-medium-gray mb-4 font-semibold">
-              Pain: "Specs take days. Edge cases get missed. Engineers ask: 'What exactly are we building?'"
+              Specs often take days, edge cases slip through, and teams keep asking: “What exactly are we building?”
             </p>
             <p className="text-soft-black mb-4">
-              <span className="font-semibold">Fix:</span> A clear PRD in minutes: features, user stories, acceptance
-              criteria, edge cases, success metrics.
+              <span className="font-semibold">Solution:</span> Generate a clear PRD in minutes — features, user stories,
+              acceptance criteria, edge cases, and success metrics.
             </p>
             <div className="mb-4 space-y-2 text-sm">
               <p className="text-soft-black">You get:</p>
@@ -180,10 +180,10 @@ export function FeaturesPain() {
               <span className="text-sm font-normal text-medium-gray">(Launch Faster)</span>
             </h3>
             <p className="text-medium-gray mb-4 font-semibold">
-              Pain: "I rewrite prompts for each tool and struggle to write the website."
+              Rewriting prompts for each tool and drafting a website slows everything down.
             </p>
             <p className="text-soft-black mb-4">
-              <span className="font-semibold">Fix:</span> 16+ platform templates that work where you build +
+              <span className="font-semibold">Solution:</span> 16+ platform templates that work where you build — plus
               ready-to-ship website copy.
             </p>
             <div className="mb-4 space-y-2 text-sm">
