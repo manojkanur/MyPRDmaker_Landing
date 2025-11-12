@@ -37,15 +37,25 @@ export function FinalCTA() {
       variants={containerVariants}
       className="text-center"
     >
-      <motion.h2 className="text-3xl md:text-4xl font-sora font-bold mb-8 text-soft-black" variants={itemVariants}>
-        Ready to generate your first Vibe Coding Prompt?
+      <motion.h2 className="text-3xl md:text-4xl font-sora font-bold mb-4 text-soft-black" variants={itemVariants}>
+        Your next product can be live today.
       </motion.h2>
-      <motion.div variants={itemVariants}>
+      <motion.p className="text-lg text-medium-gray mb-8 max-w-2xl mx-auto" variants={itemVariants}>
+        One prompt → PRD, website, and build prompts.
+      </motion.p>
+      <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" variants={itemVariants}>
         <Button
           asChild
           className="px-10 py-7 text-xl rounded-xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-lg hover:shadow-xl"
         >
-          <Link href="https://app.makeprd.ai/">Start Generating Now</Link>
+          <Link href="https://app.makeprd.ai/">Start Building</Link>
+        </Button>
+        <Button
+          asChild
+          variant="outline"
+          className="px-10 py-7 text-xl rounded-xl border-2 border-soft-black text-soft-black hover:bg-light-gray transition-all duration-300 bg-transparent"
+        >
+          <Link href="https://app.makeprd.ai/">View Pricing</Link>
         </Button>
       </motion.div>
     </motion.div>

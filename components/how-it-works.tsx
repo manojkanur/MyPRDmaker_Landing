@@ -3,9 +3,11 @@
 import type React from "react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileInputIcon as Input, Layout, Code } from "lucide-react"
+import { Nut as Input, FileText, Rocket } from "lucide-react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 interface StepCardProps {
   icon: React.ElementType
@@ -73,23 +75,20 @@ export function HowItWorks() {
     {
       icon: Input,
       step: 1,
-      title: "Describe Your Vibe",
-      description:
-        "Simply describe your creative coding idea or desired 'vibe' using our intelligent prompt interface. Be as expressive as you like!",
+      title: "Describe your idea",
+      description: "Type one simple prompt. No blank page.",
     },
     {
-      icon: Layout,
+      icon: FileText,
       step: 2,
-      title: "Choose a Style",
-      description:
-        "Select from a variety of prompt styles tailored for different coding platforms, languages, or creative outputs.",
+      title: "Get PRD + website content",
+      description: "We generate product scope, flows, metrics, and landing page copy that sells.",
     },
     {
-      icon: Code,
+      icon: Rocket,
       step: 3,
-      title: "Get a Ready-Made Prompt",
-      description:
-        "Instantly receive a comprehensive, well-structured coding prompt, ready for your creative platform.",
+      title: "Build and publish",
+      description: "Copy build prompts into V0, Lovable, Bolt, or Cursor. Go live fast.",
     },
   ]
 
@@ -104,11 +103,22 @@ export function HowItWorks() {
       <motion.h2 className="text-3xl md:text-4xl font-sora font-bold mb-12 text-soft-black" variants={itemVariants}>
         How It Works
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         {steps.map((step, index) => (
           <StepCard key={step.step} {...step} />
         ))}
       </div>
+
+      <motion.div variants={itemVariants}>
+        <Button
+          asChild
+          className="px-8 py-4 text-lg font-semibold rounded-2xl bg-soft-black text-white hover:bg-pure-black transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          <Link href="https://app.makeprd.ai/" prefetch={false}>
+            Start Building
+          </Link>
+        </Button>
+      </motion.div>
     </motion.div>
   )
 }
