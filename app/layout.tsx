@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import ThreeBackgroundClient from "@/components/three-background-client"
+import { HelpAssistant } from "@/components/help-assistant"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "MakePRD - AI-powered PRD Generator",
   description: "Instantly generate professional Product Requirement Documents using intelligent prompts.",
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -46,6 +47,7 @@ export default function RootLayout({
             {children}
             <SiteFooter />
           </div>
+          <HelpAssistant />
         </ThemeProvider>
       </body>
     </html>

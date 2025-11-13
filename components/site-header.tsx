@@ -49,11 +49,11 @@ export function SiteHeader() {
       <div className="flex items-center justify-between h-14">
         <Link href="/" className="flex items-center space-x-2">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-yvI1JOC25sRUSvzabayJIclBJWvF2E.png"
+            src="/makeprd-logo.png"
             alt="MakePRD.ai Logo"
-            width={160}
-            height={40}
-            className="h-8 w-auto"
+            width={400}
+            height={80}
+            className="h-16 w-auto"
             priority
           />
         </Link>
