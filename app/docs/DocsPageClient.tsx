@@ -3,8 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { ChevronRight, Menu, X } from "lucide-react"
+import { ChevronRight, Menu, X } from 'lucide-react'
 import { cn } from "@/lib/utils"
 
 const sections = [
@@ -398,7 +397,7 @@ export function DocsPageClient() {
           >
             <Card className="p-6 lg:bg-white/80 lg:backdrop-blur-sm">
               <h2 className="text-lg font-bold mb-4 text-soft-black">Documentation</h2>
-              <ScrollArea className="h-[calc(100vh-200px)] lg:h-auto">
+              <div className="overflow-y-auto max-h-[calc(100vh-200px)] lg:max-h-none">
                 <nav className="space-y-2">
                   {sections.map((section) => (
                     <button
@@ -424,7 +423,7 @@ export function DocsPageClient() {
                     </button>
                   ))}
                 </nav>
-              </ScrollArea>
+              </div>
             </Card>
           </aside>
 
