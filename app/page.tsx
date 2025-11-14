@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/hero-section"
-
 // Lazy load below-the-fold components to reduce initial bundle size
 const FeaturesPain = dynamic(
   () => import("@/components/features-pain").then((mod) => ({ default: mod.FeaturesPain })),

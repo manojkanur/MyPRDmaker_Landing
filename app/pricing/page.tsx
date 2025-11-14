@@ -1,4 +1,4 @@
-import PricingClientPage from "./pricingClientPage"
+import PricingClientPage from "./PricingClientPage"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
