@@ -7,7 +7,6 @@ const FeaturesPain = dynamic(
     loading: () => <div className="h-96 bg-transparent" />,
   },
 )
-
 const HowItWorks = dynamic(() => import("@/components/how-it-works").then((mod) => ({ default: mod.HowItWorks })), {
   loading: () => <div className="h-96 bg-transparent" />,
 })
