@@ -7,7 +7,6 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import ThreeBackgroundClient from "@/components/three-background-client"
 import { HelpAssistant } from "@/components/help-assistant"
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
